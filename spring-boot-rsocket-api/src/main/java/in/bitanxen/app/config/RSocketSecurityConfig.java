@@ -21,17 +21,9 @@ public class RSocketSecurityConfig {
     private final RSocketMessageHandler rSocketMessageHandler;
     private final TokenReactiveAuthenticationManager tokenReactiveAuthenticationManager;
 
-    public RSocketSecurityConfig(@Lazy RSocketMessageHandler rSocketMessageHandler, TokenReactiveAuthenticationManager tokenReactiveAuthenticationManager) {
+    public RSocketSecurityConfig(RSocketMessageHandler rSocketMessageHandler, TokenReactiveAuthenticationManager tokenReactiveAuthenticationManager) {
         this.rSocketMessageHandler = rSocketMessageHandler;
         this.tokenReactiveAuthenticationManager = tokenReactiveAuthenticationManager;
-    }
-
-    @Bean
-    RSocketMessageHandler messageHandler(RSocketStrategies strategies) {
-        RSocketMessageHandler rSocketMessageHandler = new RSocketMessageHandler();
-        rSocketMessageHandler.getArgumentResolverConfigurer().addCustomResolver(new AuthenticationPrincipalArgumentResolver());
-        rSocketMessageHandler.setRSocketStrategies(strategies);
-        return rSocketMessageHandler;
     }
 
     @Bean
@@ -48,10 +40,10 @@ public class RSocketSecurityConfig {
     }
 
     @Bean
-    AuthenticationPayloadInterceptor jwt() {
+    public AuthenticationPayloadInterceptor authenticationPayloadInterceptor(TokenAuthenticationConverter tokenAuthenticationConverter) {
         //TokenReactiveAuthenticationManager manager = new TokenReactiveAuthenticationManager();
         AuthenticationPayloadInterceptor result = new AuthenticationPayloadInterceptor(tokenReactiveAuthenticationManager);
-        result.setAuthenticationConverter(new TokenAuthenticationConverter(rSocketMessageHandler));
+        result.setAuthenticationConverter(tokenAuthenticationConverter);
         result.setOrder(PayloadInterceptorOrder.JWT_AUTHENTICATION.getOrder());
         return result;
     }

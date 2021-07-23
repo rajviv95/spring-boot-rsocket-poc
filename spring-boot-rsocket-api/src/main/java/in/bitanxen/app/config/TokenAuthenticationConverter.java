@@ -2,6 +2,7 @@ package in.bitanxen.app.config;
 
 import io.rsocket.core.DefaultConnectionSetupPayload;
 import io.rsocket.metadata.WellKnownMimeType;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Lazy;
 import org.springframework.messaging.rsocket.MetadataExtractor;
 import org.springframework.messaging.rsocket.annotation.support.RSocketMessageHandler;
@@ -16,11 +17,12 @@ import reactor.core.publisher.Mono;
 
 import java.util.Map;
 
+@Component
 public class TokenAuthenticationConverter implements PayloadExchangeAuthenticationConverter {
 
     private final MetadataExtractor metadataExtractor;
 
-    public TokenAuthenticationConverter(RSocketMessageHandler rSocketMessageHandler) {
+    public TokenAuthenticationConverter(@Autowired RSocketMessageHandler rSocketMessageHandler) {
         System.out.println("TokenAuthenticationConverter");
         this.metadataExtractor = rSocketMessageHandler.getMetadataExtractor();
     }
