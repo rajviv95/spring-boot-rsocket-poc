@@ -17,7 +17,7 @@ import reactor.core.publisher.Mono;
 
 import java.util.Map;
 
-@Component
+//@Component
 public class TokenAuthenticationConverter implements PayloadExchangeAuthenticationConverter {
 
     private final MetadataExtractor metadataExtractor;
@@ -32,6 +32,7 @@ public class TokenAuthenticationConverter implements PayloadExchangeAuthenticati
         return Mono.just(payloadExchange)
                 .log()
                 .map(pe -> {
+                    System.out.println(payloadExchange.getPayload().metadata().slice()+"  "+payloadExchange.getMetadataMimeType());
                     Map<String, Object> extract = metadataExtractor.extract(payloadExchange.getPayload(), payloadExchange.getMetadataMimeType());
                     System.out.println(extract);
                     return extract;

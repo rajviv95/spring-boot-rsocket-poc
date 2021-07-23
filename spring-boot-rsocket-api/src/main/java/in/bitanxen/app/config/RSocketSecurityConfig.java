@@ -13,27 +13,25 @@ import org.springframework.security.messaging.handler.invocation.reactive.Authen
 import org.springframework.security.rsocket.authentication.AuthenticationPayloadInterceptor;
 import org.springframework.security.rsocket.core.PayloadSocketAcceptorInterceptor;
 
-@Configuration
-@EnableRSocketSecurity
-@EnableReactiveMethodSecurity
+//@Configuration
+//@EnableRSocketSecurity
+//@EnableReactiveMethodSecurity
 public class RSocketSecurityConfig {
 
-    private final RSocketMessageHandler rSocketMessageHandler;
     private final TokenReactiveAuthenticationManager tokenReactiveAuthenticationManager;
 
-    public RSocketSecurityConfig(RSocketMessageHandler rSocketMessageHandler, TokenReactiveAuthenticationManager tokenReactiveAuthenticationManager) {
-        this.rSocketMessageHandler = rSocketMessageHandler;
+    public RSocketSecurityConfig(TokenReactiveAuthenticationManager tokenReactiveAuthenticationManager) {
         this.tokenReactiveAuthenticationManager = tokenReactiveAuthenticationManager;
     }
 
     @Bean
-    public PayloadSocketAcceptorInterceptor rsocketInterceptor(RSocketSecurity rsocket, AuthenticationPayloadInterceptor payloadInterceptor) {
+    public PayloadSocketAcceptorInterceptor acceptorInterceptor(RSocketSecurity rsocket, AuthenticationPayloadInterceptor payloadInterceptor) {
         rsocket
                 .authorizePayload(authorize ->
                         authorize
                                 .setup().permitAll()
                                 .route("notification*").permitAll()
-                                .anyRequest().authenticated()
+                                .anyRequest().permitAll()
                 )
                 .addPayloadInterceptor(payloadInterceptor);
         return rsocket.build();

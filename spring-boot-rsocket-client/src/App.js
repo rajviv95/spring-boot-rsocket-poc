@@ -12,10 +12,17 @@ import {
 function App() {
   const [data, setData] = useState(null);
 
+  function bearerToken(token) {
+    const buffer = Buffer.alloc(1 + token.length);
+    buffer.writeUInt8(0 | 0x80, 0);
+    buffer.write(token, 1, "utf-8");
+    return buffer;
+  }
+
   const handleSocket = useCallback((socket) => {
     let metadata = new Metadata();
     metadata.set(Metadata.ROUTE, "notification.stream");
-    metadata.set(Metadata.AUTHENTICATION_BEARER, "Bearer 213esfesdfsdf");
+    metadata.set(Metadata.AUTHENTICATION_BEARER, bearerToken("Bearer 213esfesdfsdf"));
 
     socket
       .requestStream({
@@ -26,7 +33,7 @@ function App() {
         onError: (e) => console.log("error: ", e.source),
         onNext: (payload) => setData((d) => (d ? [payload, ...d] : [payload])),
         onSubscribe: (subscription) => {
-          subscription.request(1000000); // set it to some max value
+          subscription.request(10); // set it to some max value
         },
       });
   }, []);

@@ -8,7 +8,7 @@ import org.springframework.stereotype.Component;
 import reactor.core.publisher.Mono;
 
 @Slf4j
-@Component
+//@Component
 public class TokenReactiveAuthenticationManager implements ReactiveAuthenticationManager {
     public TokenReactiveAuthenticationManager() {
         System.out.println("TokenReactiveAuthenticationManager");
