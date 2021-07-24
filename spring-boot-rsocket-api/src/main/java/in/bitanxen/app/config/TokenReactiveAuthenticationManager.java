@@ -8,18 +8,16 @@ import org.springframework.stereotype.Component;
 import reactor.core.publisher.Mono;
 
 @Slf4j
-//@Component
+@Component
 public class TokenReactiveAuthenticationManager implements ReactiveAuthenticationManager {
     public TokenReactiveAuthenticationManager() {
-        System.out.println("TokenReactiveAuthenticationManager");
     }
 
     @Override
     public Mono<Authentication> authenticate(Authentication authentication) {
         return Mono.just(authentication)
-                .log("TokenReactiveAuthenticationManager")
                 .map(a -> {
-                    System.out.println("auth "+a.getPrincipal() +" "+ a.getCredentials());
+                    System.out.println("TokenReactiveAuthenticationManager "+a.getPrincipal() +" "+ a.getCredentials());
                     return a;
                 })
                 .switchIfEmpty(Mono.error(new RuntimeException("Missing Authentication Token")));

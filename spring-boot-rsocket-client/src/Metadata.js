@@ -1,4 +1,9 @@
-import { JsonSerializer } from "rsocket-core";
+import {
+    JsonSerializer,
+    MESSAGE_RSOCKET_ROUTING,
+    encodeAndAddCustomMetadata,
+    encodeAndAddWellKnownMetadata,
+  } from "rsocket-core";
 
 export class Metadata extends Map {
   constructor(json) {

@@ -2,47 +2,40 @@ import logo from "./logo.svg";
 import "./App.css";
 import { useCallback, useEffect, useState } from "react";
 import rsocketService from "./RSocketService";
-import { Metadata } from "./Metadata";
-import {
-  encodeAndAddCustomMetadata,
-  encodeAndAddWellKnownMetadata,
-  MESSAGE_RSOCKET_ROUTING,
-} from "rsocket-core";
+import { Metadata as M1, JsonMetadataSerializer } from "./Metadata";
+import { MAX_STREAM_ID } from "rsocket-core";
 
 function App() {
   const [data, setData] = useState(null);
 
-  function bearerToken(token) {
-    const buffer = Buffer.alloc(1 + token.length);
-    buffer.writeUInt8(0 | 0x80, 0);
-    buffer.write(token, 1, "utf-8");
-    return buffer;
-  }
-
   const handleSocket = useCallback((socket) => {
-    let metadata = new Metadata();
-    metadata.set(Metadata.ROUTE, "notification.stream");
-    metadata.set(Metadata.AUTHENTICATION_BEARER, bearerToken("Bearer 213esfesdfsdf"));
+    let m1 = new M1();
+    m1.set(M1.ROUTE, "notification.stream");
+    m1.set(M1.AUTHENTICATION_BEARER, "35d119e9-ac02-488d-8940-52a1d6a5be50");
+
+    console.log(m1);
 
     socket
       .requestStream({
-        data: 10,
-        metadata: metadata,
+        metadata: m1,
       })
       .subscribe({
-        onError: (e) => console.log("error: ", e.source),
+        onError: (e) => console.log("error2 : ", e.source),
         onNext: (payload) => setData((d) => (d ? [payload, ...d] : [payload])),
         onSubscribe: (subscription) => {
-          subscription.request(10); // set it to some max value
+          subscription.request(MAX_STREAM_ID); // set it to some max value
         },
       });
   }, []);
 
   useEffect(() => {
     rsocketService
-      .getRSocketConnection()
-      .then((socket) => handleSocket(socket))
-      .catch((e) => console.log("error: ", e));
+      .getRSocketConnectionSubscribe()
+      .then((socket) => {
+        console.log("setup done");
+        handleSocket(socket);
+      })
+      .catch((e) => console.log("error1: ", e));
   }, [handleSocket]);
 
   return (
@@ -52,7 +45,8 @@ function App() {
         <p>
           Edit <code>src/App.js</code> and save to reload.
         </p>
-        {data && data.map((d, i) => <div key={i}>{JSON.stringify(d)}</div>)}
+        {data &&
+          data.map((d, i) => <div key={i}>{JSON.stringify(d.data)}</div>)}
       </header>
     </div>
   );
