@@ -10,8 +10,9 @@ function App() {
 
   const handleSocket = useCallback((socket) => {
     let m1 = new M1();
-    m1.set(M1.ROUTE, "notification.stream");
-    m1.set(M1.AUTHENTICATION_BEARER, "35d119e9-ac02-488d-8940-52a1d6a5be50");
+    //m1.set(M1.ROUTE, "notification.stream");
+    m1.set(M1.ROUTE, "notification.stream.5");
+    m1.set(M1.AUTHENTICATION_BEARER, "d9ce6c71-8fd0-4f43-a64b-094e80a9e038");
 
     console.log(m1);
 

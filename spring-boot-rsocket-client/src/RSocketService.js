@@ -9,7 +9,8 @@ import { Metadata as M1, JsonMetadataSerializer } from "./Metadata";
 //import Metadata from "./MetadataThree";
 
 //const wsURL = "ws://localhost:9900/api/notification/nrws";
-const wsURL = "ws://localhost:7040/api/notification/rsocket";
+//const wsURL = "ws://localhost:7040/api/notification/rsocket";
+const wsURL = "ws://localhost:9900/api/notification/nrws";
 
 class RSocketService {
   getRSocketClient = () => {
@@ -27,7 +28,7 @@ class RSocketService {
 
     let m1 = new M1();
     m1.set(M1.ROUTE, "setup");
-    m1.set(M1.AUTHENTICATION_BEARER, "35d119e9-ac02-488d-8940-52a1d6a5be50");
+    m1.set(M1.AUTHENTICATION_BEARER, "d9ce6c71-8fd0-4f43-a64b-094e80a9e038");
 
     console.log(m1);
 

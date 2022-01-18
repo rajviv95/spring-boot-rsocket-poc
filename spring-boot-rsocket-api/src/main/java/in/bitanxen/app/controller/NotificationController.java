@@ -13,11 +13,11 @@ import java.time.Duration;
 @Controller
 public class NotificationController {
 
-    @MessageMapping("notification.stream")
-    public Flux<Integer> notificationStream(@AuthenticationPrincipal String authentication) {
+    @MessageMapping("notification.stream.{limit}")
+    public Flux<Integer> notificationStream(@AuthenticationPrincipal String authentication, @DestinationVariable Integer limit) {
         System.out.println(authentication);
         return Flux.range(1, 10)
-                .delayElements(Duration.ofSeconds(1));
+                .delayElements(Duration.ofSeconds(limit));
     }
 
 
