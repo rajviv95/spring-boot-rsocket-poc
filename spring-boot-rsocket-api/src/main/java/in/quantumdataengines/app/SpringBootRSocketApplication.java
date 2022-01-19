@@ -1,4 +1,4 @@
-package in.bitanxen.app;
+package in.quantumdataengines.app;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;

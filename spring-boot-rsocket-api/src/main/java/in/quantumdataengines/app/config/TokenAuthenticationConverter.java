@@ -1,4 +1,4 @@
-package in.bitanxen.app.config;
+package in.quantumdataengines.app.config;
 
 import io.netty.buffer.ByteBuf;
 import io.netty.buffer.ByteBufAllocator;

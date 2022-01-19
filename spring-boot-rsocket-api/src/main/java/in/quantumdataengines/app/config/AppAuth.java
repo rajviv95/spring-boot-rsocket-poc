@@ -1,4 +1,4 @@
-package in.bitanxen.app.config;
+package in.quantumdataengines.app.config;
 
 import org.reactivestreams.Publisher;
 import org.springframework.core.ResolvableType;

@@ -1,4 +1,4 @@
-package in.bitanxen.app.config;
+package in.quantumdataengines.app.config;
 
 import io.rsocket.metadata.WellKnownMimeType;
 import org.springframework.context.annotation.Bean;

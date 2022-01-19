@@ -1,4 +1,4 @@
-package in.bitanxen.app.config;
+package in.quantumdataengines.app.config;
 
 import org.springframework.boot.rsocket.messaging.RSocketStrategiesCustomizer;
 import org.springframework.core.ParameterizedTypeReference;

@@ -1,4 +1,4 @@
-package in.bitanxen.app.controller;
+package in.quantumdataengines.app.controller;
 
 import lombok.Getter;
 import lombok.Setter;

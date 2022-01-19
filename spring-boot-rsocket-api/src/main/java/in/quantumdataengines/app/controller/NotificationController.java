@@ -1,4 +1,4 @@
-package in.bitanxen.app.controller;
+package in.quantumdataengines.app.controller;
 
 import org.springframework.messaging.handler.annotation.DestinationVariable;
 import org.springframework.messaging.handler.annotation.MessageMapping;
