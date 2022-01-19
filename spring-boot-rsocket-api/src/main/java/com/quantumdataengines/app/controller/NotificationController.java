@@ -1,4 +1,4 @@
-package in.quantumdataengines.app.controller;
+package com.quantumdataengines.app.controller;
 
 import org.springframework.messaging.handler.annotation.DestinationVariable;
 import org.springframework.messaging.handler.annotation.MessageMapping;

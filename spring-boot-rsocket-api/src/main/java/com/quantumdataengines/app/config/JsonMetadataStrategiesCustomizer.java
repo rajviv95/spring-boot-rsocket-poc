@@ -1,4 +1,4 @@
-package in.quantumdataengines.app.config;
+package com.quantumdataengines.app.config;
 
 import org.springframework.boot.rsocket.messaging.RSocketStrategiesCustomizer;
 import org.springframework.core.ParameterizedTypeReference;

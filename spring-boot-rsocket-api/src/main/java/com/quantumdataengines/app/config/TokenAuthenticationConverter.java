@@ -1,4 +1,4 @@
-package in.quantumdataengines.app.config;
+package com.quantumdataengines.app.config;
 
 import io.netty.buffer.ByteBuf;
 import io.netty.buffer.ByteBufAllocator;

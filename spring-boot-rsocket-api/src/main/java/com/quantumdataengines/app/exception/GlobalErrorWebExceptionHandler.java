@@ -1,4 +1,4 @@
-package in.quantumdataengines.app.exception;
+package com.quantumdataengines.app.exception;
 
 import org.springframework.boot.autoconfigure.web.WebProperties;
 import org.springframework.boot.autoconfigure.web.reactive.error.AbstractErrorWebExceptionHandler;

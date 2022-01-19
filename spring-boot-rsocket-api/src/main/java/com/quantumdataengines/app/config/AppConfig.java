@@ -1,4 +1,4 @@
-package in.quantumdataengines.app.config;
+package com.quantumdataengines.app.config;
 
 import io.rsocket.metadata.WellKnownMimeType;
 import org.springframework.context.annotation.Bean;

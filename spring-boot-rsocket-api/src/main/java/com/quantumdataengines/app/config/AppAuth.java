@@ -1,4 +1,4 @@
-package in.quantumdataengines.app.config;
+package com.quantumdataengines.app.config;
 
 import org.reactivestreams.Publisher;
 import org.springframework.core.ResolvableType;

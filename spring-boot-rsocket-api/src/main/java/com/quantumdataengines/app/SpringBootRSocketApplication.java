@@ -1,4 +1,4 @@
-package in.quantumdataengines.app;
+package com.quantumdataengines.app;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;

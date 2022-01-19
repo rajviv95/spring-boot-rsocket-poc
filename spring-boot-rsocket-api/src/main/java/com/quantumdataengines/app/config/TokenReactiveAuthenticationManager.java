@@ -1,4 +1,4 @@
-package in.quantumdataengines.app.config;
+package com.quantumdataengines.app.config;
 
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.security.authentication.ReactiveAuthenticationManager;
